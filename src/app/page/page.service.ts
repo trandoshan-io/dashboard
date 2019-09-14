@@ -1,13 +1,12 @@
 import {Injectable} from '@angular/core';
 import {PageModule} from './page.module';
+import {Observable} from 'rxjs';
+import {HttpClient, HttpParams} from '@angular/common/http';
+import {environment} from '../../environments/environment';
 
 export interface SearchResult {
   url: string;
   crawlDate: Date;
-}
-
-interface SearchCommand {
-  criteria: string;
 }
 
 @Injectable({
@@ -15,6 +14,12 @@ interface SearchCommand {
 })
 export class PageService {
 
-  constructor() {
+  constructor(private _httpClient: HttpClient) {
+  }
+
+  public searchPages(criteria: string): Observable<SearchResult[]> {
+    return this._httpClient.get<SearchResult[]>(environment.apiUrl + '/pages', {
+      params: new HttpParams().set('criteria', criteria)
+    });
   }
 }

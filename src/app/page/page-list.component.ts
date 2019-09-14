@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import {SearchResult, PageService} from './page.service';
+import {Component, HostListener, OnInit} from '@angular/core';
+import {PageService, SearchResult} from './page.service';
 
 @Component({
   selector: 'app-page-list',
@@ -9,14 +9,22 @@ import {SearchResult, PageService} from './page.service';
 export class PageListComponent implements OnInit {
 
   displayedColumns: string[] = ['url', 'crawlDate'];
-  dataSource: SearchResult[] = [{url: 'http://fezfg4342fezgrzh.onion/index.php', crawlDate: new Date()}];
+  dataSource: SearchResult[] = [];
+  searchCriteria = '';
 
-  constructor(private _pageService: PageService) { }
+  constructor(private _pageService: PageService) {
+  }
 
   ngOnInit() {
   }
 
-  public formatDate(date: Date): string {
+  @HostListener('document:keydown.enter', ['$event'])
+  public onKeydownHandler(evt: KeyboardEvent) {
+    this._pageService.searchPages(this.searchCriteria).subscribe(pages => this.dataSource = pages);
+  }
+
+  public formatDate(dateStr: string): string {
+    const date = new Date(dateStr);
     const day = date.getDay() < 9 ? '0' + date.getDay() : date.getDay();
     const month = date.getMonth() < 9 ? '0' + date.getMonth() : date.getMonth();
     return day + '/' + month + '/' + date.getFullYear() + ' @ ' + date.getHours() + ':' + date.getMinutes();
