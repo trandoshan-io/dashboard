@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {PageDetail, PageService} from './page.service';
+import {SearchResult, PageService} from './page.service';
 
 @Component({
   selector: 'app-page-list',
@@ -9,7 +9,7 @@ import {PageDetail, PageService} from './page.service';
 export class PageListComponent implements OnInit {
 
   displayedColumns: string[] = ['url', 'crawlDate'];
-  dataSource: PageDetail[] = [{url: 'http://fezfg4342fezgrzh.onion/index.php', crawlDate: new Date()}];
+  dataSource: SearchResult[] = [{url: 'http://fezfg4342fezgrzh.onion/index.php', crawlDate: new Date()}];
 
   constructor(private _pageService: PageService) { }
 
