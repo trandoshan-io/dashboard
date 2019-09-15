@@ -5,6 +5,7 @@ import {HttpClient, HttpParams} from '@angular/common/http';
 import {environment} from '../../environments/environment';
 
 export interface SearchResult {
+  id: string;
   url: string;
   crawlDate: Date;
 }
