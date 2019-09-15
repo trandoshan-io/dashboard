@@ -4,6 +4,11 @@ import {Observable} from 'rxjs';
 import {HttpClient, HttpParams} from '@angular/common/http';
 import {environment} from '../../environments/environment';
 
+interface ClientCommand {
+  command: string;
+  payload: string;
+}
+
 export interface SearchResult {
   id: string;
   url: string;
