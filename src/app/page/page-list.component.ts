@@ -8,7 +8,7 @@ import {PageService, SearchResult} from './page.service';
 })
 export class PageListComponent implements OnInit {
 
-  displayedColumns: string[] = ['url', 'crawlDate'];
+  displayedColumns: string[] = ['title', 'url', 'crawlDate'];
   dataSource: SearchResult[] = [];
   searchCriteria = '';
 

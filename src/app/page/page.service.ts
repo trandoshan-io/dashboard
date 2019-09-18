@@ -12,6 +12,7 @@ interface ClientCommand {
 export interface SearchResult {
   id: string;
   url: string;
+  tite: string;
   crawlDate: Date;
 }
 
