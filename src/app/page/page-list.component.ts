@@ -8,6 +8,8 @@ import {PageService, SearchResult} from './page.service';
 })
 export class PageListComponent implements OnInit {
 
+  private static MAX_TITLE_LENGTH = 65;
+
   displayedColumns: string[] = ['title', 'url', 'crawlDate'];
   dataSource: SearchResult[] = [];
   searchCriteria = '';
@@ -28,5 +30,13 @@ export class PageListComponent implements OnInit {
     const day = date.getDay() < 9 ? '0' + date.getDay() : date.getDay();
     const month = date.getMonth() < 9 ? '0' + date.getMonth() : date.getMonth();
     return day + '/' + month + '/' + date.getFullYear() + ' @ ' + date.getHours() + ':' + date.getMinutes();
+  }
+
+  public formatTitle(title: string): string {
+    if (title.length < PageListComponent.MAX_TITLE_LENGTH) {
+      return title;
+    }
+
+    return title.substring(0, PageListComponent.MAX_TITLE_LENGTH) + '...';
   }
 }

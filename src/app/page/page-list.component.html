@@ -6,7 +6,7 @@
   <!-- Title Column -->
   <ng-container matColumnDef="title">
     <th mat-header-cell *matHeaderCellDef>Title</th>
-    <td mat-cell *matCellDef="let element">{{element.title}}</td>
+    <td mat-cell *matCellDef="let element">{{formatTitle(element.title)}}</td>
   </ng-container>
 
   <!-- URL Column -->
